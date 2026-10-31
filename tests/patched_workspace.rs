@@ -57,7 +57,11 @@ fn setup_fixture() -> PathBuf {
             .env("GIT_COMMITTER_EMAIL", "test@example.com")
             .output()
             .expect("git");
-        assert!(out.status.success(), "git {args:?} failed: {}", String::from_utf8_lossy(&out.stderr));
+        assert!(
+            out.status.success(),
+            "git {args:?} failed: {}",
+            String::from_utf8_lossy(&out.stderr)
+        );
     };
     run_git(&["init", "-q"]);
     run_git(&["add", "-A"]);
